@@ -74,6 +74,11 @@ def sphere_volume_parallel1(n,d,np=10):
     return sum(res)/np
 
 
+def process_instruction(n,d):  #Used inside sphere_volume_parallel2
+        point_lst = [Point([random.uniform(-1,1) for _ in range(d)]) for _ in range(n)]
+        count = len(list(filter(lambda x: x.distance() <= 1, point_lst)))
+        return count
+
 #Ex4: parallel code - parallelize actual computations by splitting data
 def sphere_volume_parallel2(n,d,np=10):
     #n is the number of points
@@ -81,34 +86,28 @@ def sphere_volume_parallel2(n,d,np=10):
     #np is the number of processes
 
     nr_per_pro = m.floor(n/np)
+    print(process_instruction(100,10))
 
-    def process_instruction(n,d):
-        point_lst = [Point([random.uniform(-1,1) for _ in range(d)]) for _ in range(n)]
-        count = len(list(filter(lambda x: x.distance() <= 1, point_lst)))
-        return (2**d)*count/n
-    
-    process = []
 
     with future.ProcessPoolExecutor() as ex:
-        
-        for i in range(np):
+        process = []
+        for _ in range(np):
             process.append(ex.submit(process_instruction, nr_per_pro,d))
 
-    result = [i.result() for i in process]
+
+        result = sum([process[i].result() for i in range(np)])
+
 
 
     
-    return result
+    return (2**d)*result/n
     
 def main():
-
-
-    ''' 
-    Ex1
+#    Ex1
     dots = [1000, 10000, 100000]
     for n in dots:
         approximate_pi(n)
-        plt.show
+        plt.show()
 
 
     #Ex2
@@ -140,10 +139,10 @@ def main():
     stop = pc()
     print(f'time for parallell: {stop-start}')
     'paralell time on server is 1.7111361459828913'
-    '''
+
     
     #Ex4
-    n = 10000
+    n = 10
     d = 11
     start = pc()
     sphere_volume(n,d)
@@ -151,10 +150,9 @@ def main():
     print(f"Ex4: Sequential time of {d} and {n}: {stop-start}")
     print("What is parallel time?")
     start = pc()
-    sphere_volume_parallel2(n,d,10)
+    print(f'result for parallell: {sphere_volume_parallel2(n,d,10)}')
     stop = pc()
-    print(f"Paralell time  {d} and {n}: {stop-start}")
-
+    print(f"Parallel time on server with d={d} and n ={n}: {stop-start}")
     
     
 
