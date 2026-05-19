@@ -123,8 +123,8 @@ def main():
     d = 11
     sphere_volume(n,d)
     print(f"Actual volume of {d} dimentional sphere = {hypersphere_exact(n,d)}")
-
-    #Ex3
+'''
+   # Ex3
     n = 10**5
     d = 10
     res = []
@@ -140,7 +140,7 @@ def main():
     print(f'result for parallell: {sphere_volume_parallel1(100000,10)}')
     stop = pc()
     print(f'time for parallell: {stop-start}')
-    '''
+
     #Ex4
     n = 1000000
     d = 11
