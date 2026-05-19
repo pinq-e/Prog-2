@@ -103,19 +103,17 @@ def sphere_volume_parallel2(n,d,np=10):
     return (2**d)*result/n
     
 def main():
-#    Ex1
+    #Ex1
     dots = [1000, 10000, 100000]
     for n in dots:
         approximate_pi(n)
-        plt.show()
 
 
     #Ex2
     n = 100000
     d = 2
-    print(sphere_volume(n,d))
+    sphere_volume(n,d)
     print(f"Actual volume of {d} dimentional sphere = {hypersphere_exact(n,d)}")
-
 
     n = 100000
     d = 11
@@ -123,14 +121,12 @@ def main():
     print(f"Actual volume of {d} dimentional sphere = {hypersphere_exact(n,d)}")
 
    # Ex3
-    n = 10**5
-    d = 10
-    res = []
+    n = 100000
+    d = 11
     start = pc()
     for y in range (10):
-        res.append(sphere_volume(n,d))
+        sphere_volume(n,d)
     stop = pc()
-    print(f'average result is :{sum(res)/10}')
     print(f"Ex3: Sequential time of {d} and {n}: {stop-start}")
     print("What is parallel time?")
 
@@ -142,7 +138,7 @@ def main():
 
     
     #Ex4
-    n = 10
+    n = 1000000
     d = 11
     start = pc()
     sphere_volume(n,d)
