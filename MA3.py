@@ -140,7 +140,7 @@ def main():
     print(f'result for parallell: {sphere_volume_parallel1(100000,10)}')
     stop = pc()
     print(f'time for parallell: {stop-start}')
-
+'''
     #Ex4
     n = 1000000
     d = 11
@@ -149,7 +149,7 @@ def main():
     stop = pc()
     print(f"Ex4: Sequential time of {d} and {n}: {stop-start}")
     print("What is parallel time?")
-
+'''
     
     
 
