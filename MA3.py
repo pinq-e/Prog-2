@@ -103,6 +103,8 @@ def sphere_volume_parallel2(n,d,np=10):
     return (2**d)*result/n
     
 def main():
+
+    '''
     #Ex1
     dots = [1000, 10000, 100000]
     for n in dots:
@@ -118,7 +120,7 @@ def main():
     n = 100000
     d = 11
     sphere_volume(n,d)
-    print(f"Actual volume of {d} dimentional sphere = {hypersphere_exact(n,d)}")
+    print(f"Actual volume of {d} dimentional sphere = {hypersphere_exact(n,d)}")'''
 
    # Ex3
     n = 100000
